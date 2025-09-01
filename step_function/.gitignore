@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+
+# Lambda build artifacts
+lambda/retrigger_step_function.zip

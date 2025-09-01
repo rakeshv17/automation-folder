@@ -1,0 +1,49 @@
+# Ignore Python virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Ignore site-packages and dependencies
+**/site-packages/
+**/pip/
+**/setuptools/
+**/pkg_resources/
+**/_distutils_hack/
+**/*.dist-info/
+**/distutils-precedence.pth
+
+# Ignore Lambda deployment zips
+*.zip
+
+# Ignore __pycache__ and Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore OS files
+.DS_Store
+
+# Terraform
+step_function/.terraform/
+step_function/.terraform.lock.hcl
+step_function/terraform.tfstate
+step_function/terraform.tfstate.backup
+
+# Lambda build artifacts
+lambda/retrigger_step_function.zip
+# Ignore all dependency folders and build artifacts
+retrigger_step_function/requests/
+retrigger_step_function/urllib3/
+retrigger_step_function/idna/
+retrigger_step_function/certifi/
+retrigger_step_function/charset_normalizer/
+retrigger_step_function/__pycache__/
+retrigger_step_function/*.zip
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
