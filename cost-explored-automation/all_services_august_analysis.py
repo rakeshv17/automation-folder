@@ -1,11 +1,28 @@
+import os
 import json
 from collections import defaultdict
 import subprocess
 import requests
-import os
+
+# Download the AWS services cost data for August if not present
+data_file = 'all_services_august.json'
+if not os.path.exists(data_file):
+    print(f"{data_file} not found. Downloading from AWS Cost Explorer...")
+    aws_profile = os.environ.get('AWS_PROFILE', 'release-prod-admin')
+    aws_cmd = [
+        'aws', 'ce', 'get-cost-and-usage',
+        '--time-period', 'Start=2025-08-01,End=2025-09-01',
+        '--granularity', 'DAILY',
+        '--metrics', 'UnblendedCost',
+        '--group-by', 'Type="DIMENSION",Key="SERVICE"',
+        '--profile', aws_profile
+    ]
+    with open(data_file, 'w') as f:
+        subprocess.run(aws_cmd, stdout=f, check=True)
+    print(f"Downloaded {data_file}.")
 
 # Load the AWS services cost data for August
-with open('all_services_august.json') as f:
+with open(data_file) as f:
     data = json.load(f)
 
 daily_costs = []
